@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>生日快乐 - 猪盈盈</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      font-family: "Microsoft YaHei", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 90%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    p {
+      font-size: 1.4em;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .cake {
+      font-size: 5em;
+      margin: 20px 0;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .hint {
+      position: fixed;
+      top: 20px;
+      left: 0;
+      right: 0;
+      font-size: 1.2em;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="hint" id="hint"></div>
+  <div class="container">
+    <div class="cake">🎂</div>
+    <h1>生日快乐！</h1>
+    <p id="msg1">亲爱的<strong>猪盈盈</strong>：</p>
+    <p id="msg2">
+      愿你今天被幸福包围，被笑声环绕，<br>
+      每一天都比昨天更闪耀✨<br>
+      永远可爱、自信、闪闪发光！<br>
+      新的一岁，心想事成，万事顺意！
+    </p>
+  </div>
+
+  <script>
+    let clickCount = 0;
+    const hintEl = document.getElementById('hint');
+    const msg1 = document.getElementById('msg1');
+    const msg2 = document.getElementById('msg2');
+
+    const hints = [
+      "再点一下试试？😉",
+      "嘿嘿，快了快了～🎈",
+      ""
+    ];
+
+    document.body.addEventListener('click', () => {
+      clickCount++;
+      if (clickCount <= 2) {
+        hintEl.textContent = hints[clickCount - 1];
+        hintEl.style.opacity = '1';
+        setTimeout(() => {
+          hintEl.style.opacity = '0';
+        }, 1500);
+      } else if (clickCount === 3) {
+        // 显示祝福语
+        msg1.style.opacity = '1';
+        msg2.style.opacity = '1';
+
+        // 可选：添加一点庆祝效果
+        document.body.style.background = 'linear-gradient(135deg, #a1c4fd, #c2e9fb)';
+        document.querySelector('.cake').textContent = '🎉';
+        hintEl.textContent = '🎁 惊喜揭晓！';
+        hintEl.style.opacity = '1';
+        setTimeout(() => {
+          hintEl.style.opacity = '0';
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
